@@ -13,7 +13,8 @@
     "iron-selector": "^2.1.0",
     "iron-pages": "^2.1.1",
     "iron-flex-layout": "^2.0.3",
-    "app-route": "PolymerElements/app-route#^2.1.1"
+    "app-route": "PolymerElements/app-route#^2.1.1",
+    "paper-dialog": "^2.1.1"
   },
   "devDependencies": {
     "web-component-tester": "Polymer/web-component-tester#^6.0.0",

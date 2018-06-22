@@ -1,183 +1,78 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
-<link rel="import" href="../../bower_components/app-layout/app-layout.html">
-<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
-<link rel="import" href="../../bower_components/iron-icons/social-icons.html">
-<link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../../bower_components/paper-tooltip/paper-tooltip.html">
-<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
-<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
-<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
 
 <dom-module id="puppie-login">
-    <template>        
-           
-        <custom-style>
-            <style is="custom-style">
-                :host {
-                    display: block;
-                    font-family: Roboto, Noto, sans-serif;
-                
-                    /*background-image: url(http://www.placepuppy.net/400/250)*/
-                }
-                .container:not([enabled]){              
-                    background-color: red;
-                    margin:0;  
-                    padding:0;               
-                    position:fixed;              
-                    height: 100%;
-                    width: 100%;                         
-                }               
-                .cabecalho{
+    <template>
+        <style>
+            :host {
+                display: block;
+                font-family: Roboto, Noto, sans-serif;                
+            }
+            #card { 
+                display:block;
+                top:10%;
+                left:35%;
+                width: 300px;
+                height: 220px;
+                position:absolute;                            
+                padding: 16px;                       
+                border-radius: 5px;
+                color:pink;
+                background-color:palevioletred; /* #fff;*/
+                box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);                
+            } 
+            paper-input{
+                    --paper-input-container-color:pink;
+                    --paper-input-container-focus-color: pink;
+            }                
+            paper-button.login{                 
                     background-color: lightseagreen;
-                    color: white;                
-                    height: 30%;  
-                    margin:0;                   
-                    top:0 ;                                           
-                } 
-                app-header{
-                    background-color: orange;
-                    width:100%;
-                    height: 100%;                  
-                }
-                app-toolbar{
-                    background-color: blue;
-                    height: 100%;  
-                    @apply --layout-horizontal;
-                    @apply --layout-around-justified;    
-                }
-                .corpo{
-                    margin: 0;
-                    position:fixed;
-                    background-color: lightgray;
-                    height: 100%;
-                    width: 100%;
-                    padding:0;
-                /* background-image: url(http://www.placepuppy.net/400/250);  */    
-                    
-                }   
-                .card { 
-                    /*display: block/none;*/ 
-                    top:10%;
-                    left:35%;
-                    width: 300px;
-                    height: 220px;
-                    margin: auto; 
-                    position:absolute;                             
-                    padding: 16px;                           
-                    color: #757575;
-                    border-radius: 5px;
-                    background-color:violet; /* #fff;*/
-                    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);                
-                } 
-                
-                paper-button{
-                   
-                    @apply --layout-vertical;
-                    @apply --layout-center;
-                }
-
-                 paper-button.login{
-                    background-color: lightslategrey;
-                    margin-left: 15%;
-                    width: 70%; 
                     font-weight: bold;
-                    color:white; 
-                             
-                }
-
-                paper-button.cadastro{
-                    background-color: lightslategrey;                    
+                    color:white;
+                    margin-left: 15%;
+                    width: 70%;                     
+            }                 
+            paper-button.cadastro[raised]{                                     
                     width:40%; 
                     height: 15%;
                     padding:1px; 
                     top:10px; 
-                    margin-left: 30%;                           
-                    color:white;               
-                }  
-                    
-                
-            </style> 
-        </custom-style>        
-                <div class="container">
-                       <div class="cabecalho">                           
-                            <app-header>
-                                <app-toolbar>       
-                                                
-                                              
-                                   <div main-title>Meu Sistema</div>
-                                    <div>
-                                        <a href="">Ajuda </a>
-                                        <iron-icon icon="help-outline"></iron-icon> 
-                                    </div>                                               
-                                </app-toolbar>
-                            </app-header>               
-                        </div>
-                        <div class="corpo">
-                            <div class="card">   
-                                <paper-input always-float-label label="Usuario"  value="{{user}}" > <!--on-value-changed-->
-                                    <iron-icon icon="social:person" slot="prefix"></iron-icon>
-                                    <iron-icon icon="info-outline" slot="suffix"></iron-icon>                                                                 
-                                </paper-input> 
-                                <paper-input always-float-label label="Senha" value="{{password}}">
-                                    <iron-icon icon="lock" slot="prefix"></iron-icon>  
-                                    <iron-icon icon="help-outline" slot="suffix"></iron-icon>                       
-                                </paper-input>         
-                                    
-
-                                <paper-button raised class="login">Login</paper-button> 
-                                <paper-button raised class="cadastro">Cadastrar</paper-button>
-                            </div> 
-                        </div>
-                            
-                   </div>     
-        
-        
-
-        
+                    margin-left: 30%;                      
+                    background-color: lightseagreen; 
+                    font-weight: bold;
+                    color:white;             
+            }
+            paper-tooltip{
+                    --paper-tooltip-background:lightpink;
+                    --paper-tooltip-text-color:crimson;
+                    width:100px;
+            }          
+        </style>
+        <div id="card">                                       
+                <paper-input always-float-label label="Usuario"  value="{{user}}"> <!--on-value-changed-->
+                    <iron-icon icon="social:person" slot="prefix"></iron-icon>                                    
+                    <iron-icon id="usu" icon="info-outline" slot="suffix"></iron-icon>                                                                                                                            
+                </paper-input> 
+                <paper-tooltip for="usu" position="right">Insira o nome do usuario</paper-tooltip>    
+                <paper-input always-float-label label="Senha" value="{{password}}">
+                    <iron-icon icon="lock" slot="prefix"></iron-icon>  
+                    <iron-icon id="senha" icon="help-outline" slot="suffix"></iron-icon>                       
+                </paper-input>  
+                <paper-tooltip for="senha" position="right">Insira a sua senha</paper-tooltip>
+                <paper-button raised class="login" on-click="escondeCard">Login</paper-button> 
+                <paper-button raised class="cadastro">Cadastrar</paper-button>
+            </div> 
     </template>
     <script>
         class PuppieLogin extends Polymer.Element{
-            static get is() {return 'puppie-login';}
-            static get properties() {
-                return {          
-                    user:{
-                        type:String,
-                        observer: '_showUser'
-                        
-                    },
-                    password:{
-                        type:String,
-                        observer: '_showPass'
-                    }         
-                };
-             }
-
-       /*_showUser(event){
-           let selecionado=event.target;
-           this.user=event.target.value; 
-           console.log(this.user);        
-       }
-       _showPass(event){
-           let selecionado=event.target;
-           this.password=event.target.value; 
-           console.log(this.password);        
-       }*/
-       _showUser(newValue,oldValue){ 
-           if(newValue!=oldValue){
-                console.log(newValue);
-           }          
-       }
-
-       _showPass(newValue,oldValue){
-            if(newValue!=oldValue){
-                console.log(newValue);
-           }           
-       }
-
-    }       
-
+            static get is() {
+                return 'puppie-login';
+            }
+        }
         customElements.define(PuppieLogin.is,PuppieLogin);
+    </script>
 
-    </script>    
 </dom-module>
