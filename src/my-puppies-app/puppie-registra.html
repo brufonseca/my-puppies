@@ -1,0 +1,124 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+
+<dom-module id="puppie-registra">
+    <template>
+        <custom-style> 
+            <style is="custom-style" include="iron-flex  iron-flex-alignment">
+                :host {
+                    display: block;
+                    font-family: Roboto, Noto, sans-serif;                
+                }                
+                #card { 
+                   /* @apply --layout-center-justified; */
+                    display:block;
+                    top:10%;
+                    left:25%;
+                    width: 550px;
+                    height: 325px;
+                    position:absolute;                                       
+                   /* border-radius: 5px;*/
+                    color:pink;
+                    background-color:palevioletred; /* #fff;*/
+                    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);                
+                } 
+                #card[hide]{
+                        display: none;
+                }  
+                #topo{
+                  display: inline-flex;
+                    padding:0;
+                    background-color: lightseagreen;
+                    border-radius: 0;
+                    height: 15%;
+                    width:100%;
+                    @apply --layout-center; 
+                    color:white;
+                   
+                }  
+                paper-input{
+                        --paper-input-container-color:pink;
+                        --paper-input-container-focus-color: pink;
+                        --primary-text-color:pink;
+                }
+                paper-button{                 
+                        background-color: lightseagreen;
+                        font-weight: bold;
+                        color:white;                        
+                        width: 40%;                                        
+                } 
+                .botao{
+                    @apply --layout-center-justified; 
+                    text-align: center;
+                    padding:10px; 
+                    top:10px;
+                }
+                          
+                
+            </style>
+       </custom-style> 
+        <div id="card">
+            <div id="topo"> 
+                <paper-icon-button icon="arrow-back" on-tap="volta"></paper-icon-button>                 
+                <div>Novo Usuário</div>                             
+            </div>
+            <div style="padding: 16px;">
+                <div>
+                    <div style="display: inline-block; width:45%">
+                        <paper-input always-float-label label="Nome" > 
+                            <iron-icon icon="social:person" slot="prefix"></iron-icon>                                                                                                                                          
+                        </paper-input> 
+                    </div>
+                    <div style=" width:50%;float:right;">  
+                        <paper-input always-float-label label="Sobrenome" >
+                            <iron-icon icon="social:person" slot="prefix"></iron-icon>                                     
+                        </paper-input>
+                    </div>
+                </div> 
+                <div>
+                    <paper-input always-float-label label="E-mail">
+                        <iron-icon icon="mail" slot="prefix"></iron-icon>                                     
+                    </paper-input>
+                </div>
+                <div>
+                    <div style="display: inline-block; width:45%">
+                        <paper-input always-float-label label="Senha">
+                            <iron-icon icon="lock" slot="prefix"></iron-icon>                                     
+                        </paper-input>
+                    </div>
+                    <div style=" width:50%;float:right">
+                        <paper-input always-float-label label="Confirmar Senha">
+                            <iron-icon icon="lock" slot="prefix"></iron-icon>                                     
+                        </paper-input>
+                    </div>  
+                </div> 
+                <div class="botao">                    
+                    <paper-button raised >Cadastrar</paper-button>
+                </div>
+             </div>
+         </div>
+    </template>
+    <script>
+         class PuppieRegistra extends Polymer.Element{
+            static get is() {return 'puppie-registra';}   
+
+            volta(){
+                this.shadowRoot.querySelector('#card').setAttribute('hide',null);                
+                var para = document.createElement('puppie-login');
+                this.shadowRoot.appendChild(para);
+
+            }  
+                       
+        }             
+
+
+        customElements.define(PuppieRegistra.is,PuppieRegistra);
+
+
+    </script>
+</dom-module>

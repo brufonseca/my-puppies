@@ -9,11 +9,11 @@
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="puppie-login.html">
+<link rel="import" href="puppie-registra.html">
 
 
 <dom-module id="puppie-entrada">
     <template>        
-           
         <custom-style> 
             <style is="custom-style" include="iron-flex  iron-flex-alignment iron-flex-factors">
                 :host {
@@ -48,12 +48,12 @@
                     left:35%;
                     width: 300px;
                     height: 220px;
-                   /* margin: auto;*/ 
+                   
                     position:absolute;                            
                     padding: 16px;                       
                     border-radius: 5px;
                     color:pink;
-                    background-color:palevioletred; /* #fff;*/
+                    background-color:palevioletred; 
                     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);                
                 }                  
                 #card[hide]{
@@ -84,7 +84,7 @@
                     --paper-tooltip-background:lightpink;
                     --paper-tooltip-text-color:crimson;
                     width:100px;
-                }                  
+                }                
             </style> 
        </custom-style> 
                 <div class="container">
@@ -98,8 +98,9 @@
                             </div>                                        
                         </div>
                         <div class="corpo">
-                            <puppie-login></puppie-login>
-                          <!--  <div id="card">                                       
+                          <puppie-login id="login"></puppie-login> 
+                         
+                         <!--   <div id="card">                                       
                                 <paper-input  label="Usuario"  value="{{user}}"> 
                                     <iron-icon icon="social:person" slot="prefix"></iron-icon>                                    
                                     <iron-icon id="usu" icon="info-outline" slot="suffix"></iron-icon>                                                                                                                            
@@ -149,28 +150,14 @@
                 }           
             }
             
-            escondeCard(){                          
+           /* escondeCard(){                          
                 this.shadowRoot.querySelector('#card').setAttribute('hide',null);               
-            } 
-            mostraCard(){                          
-                this.shadowRoot.querySelector('#card').removeAttribute('hide');               
-            }  
-            /*_showUser(event){
-            let selecionado=event.target;
-            this.user=event.target.value; 
-            console.log(this.user);        
-            }
-            _showPass(event){
-                let selecionado=event.target;
-                this.password=event.target.value; 
-                console.log(this.password);        
-            }*/
-        }
-
-            
-               
-
-
+            } */
+            mostraCard(){ 
+                let teste= this.shadowRoot.querySelector('#login');
+                teste.shadowRoot.querySelector('#card').removeAttribute('hide');                            
+            }              
+        }     
         customElements.define(PuppieEntrada.is,PuppieEntrada);
 
     </script>    

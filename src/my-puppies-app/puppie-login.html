@@ -3,6 +3,7 @@
 <link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../../bower_components/paper-tooltip/paper-tooltip.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="puppie-registra.html">
 
 <dom-module id="puppie-login">
     <template>
@@ -16,17 +17,30 @@
                 top:10%;
                 left:35%;
                 width: 300px;
-                height: 220px;
-                position:absolute;                            
-                padding: 16px;                       
-                border-radius: 5px;
+                height: 280px;
+                position:absolute;               
                 color:pink;
                 background-color:palevioletred; /* #fff;*/
                 box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);                
             } 
+            #card[hide]{
+                    display: none;
+            } 
+            #topo{ 
+                              
+                top:0;
+                background-color: lightseagreen;
+                margin:0;
+                height: 15%;
+                width:100%;
+                @apply --layout-center-justified; 
+                color:white;                  
+            }   
+            
             paper-input{
                     --paper-input-container-color:pink;
                     --paper-input-container-focus-color: pink;
+                    --primary-text-color:pink;
             }                
             paper-button.login{                 
                     background-color: lightseagreen;
@@ -37,7 +51,7 @@
             }                 
             paper-button.cadastro[raised]{                                     
                     width:40%; 
-                    height: 15%;
+                    height: 30%;
                     padding:1px; 
                     top:10px; 
                     margin-left: 30%;                      
@@ -51,7 +65,11 @@
                     width:100px;
             }          
         </style>
-        <div id="card">                                       
+        <div id="card">   
+            <div id="topo">                                 
+               
+            </div> 
+            <div style="padding:16px">                                      
                 <paper-input always-float-label label="Usuario"  value="{{user}}"> <!--on-value-changed-->
                     <iron-icon icon="social:person" slot="prefix"></iron-icon>                                    
                     <iron-icon id="usu" icon="info-outline" slot="suffix"></iron-icon>                                                                                                                            
@@ -63,13 +81,46 @@
                 </paper-input>  
                 <paper-tooltip for="senha" position="right">Insira a sua senha</paper-tooltip>
                 <paper-button raised class="login" on-click="escondeCard">Login</paper-button> 
-                <paper-button raised class="cadastro">Cadastrar</paper-button>
+                <paper-button raised class="cadastro" on-click="registra">Cadastrar</paper-button>
             </div> 
+        </div> 
     </template>
     <script>
         class PuppieLogin extends Polymer.Element{
             static get is() {
                 return 'puppie-login';
+            }
+            static get properties() {
+                return {          
+                    user:{
+                        type:String,
+                        observer: '_showUser'                       
+                    },
+                    password:{
+                        type:String,
+                        observer: '_showPass'
+                    }         
+                };
+             }
+      
+            _showUser(newValue,oldValue){ 
+                if(newValue!=oldValue){
+                        console.log(newValue);
+                }          
+            }
+
+            _showPass(newValue,oldValue){
+                    if(newValue!=oldValue){
+                        console.log(newValue);
+                }           
+            }
+            escondeCard(){                          
+                this.shadowRoot.querySelector('#card').setAttribute('hide',null);               
+            }
+            registra(){
+                this.shadowRoot.querySelector('#card').setAttribute('hide',null);                
+                var para = document.createElement('puppie-registra');
+                this.shadowRoot.appendChild(para);
             }
         }
         customElements.define(PuppieLogin.is,PuppieLogin);
