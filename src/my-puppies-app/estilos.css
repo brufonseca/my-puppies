@@ -1,0 +1,25 @@
+@media screen and (min-device-width: 320px) and (max-device-width:568px) and (orientation:portrait) {
+    .cabecalho {
+        display: none !important;                        
+    }                 
+}
+@media screen and (min-device-width: 320px) and (max-device-width:568px) and (orientation:landscape) {
+    .cabecalho {
+        display: none !important;                        
+    }                 
+}
+@media screen and (min-device-width: 375px) and (max-device-width:667px) {
+    .cabecalho {
+        display: none !important;                        
+    }                 
+}
+@media screen and (min-device-width: 414px) and (max-device-width:736px) {
+    .cabecalho {
+        display: none !important;                        
+    }                 
+}
+@media screen and (min-device-width: 375px) and (max-device-width:812px) {
+    .cabecalho {
+        display: none !important;                        
+    }                 
+}

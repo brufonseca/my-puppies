@@ -12,15 +12,16 @@
 <link rel="import" href="puppie-registra.html">
 
 
+
 <dom-module id="puppie-entrada">
-    <template>        
+    <template> 
         <custom-style> 
             <style is="custom-style" include="iron-flex  iron-flex-alignment iron-flex-factors">
                 :host {
                     display: block;
                     font-family: Roboto, Noto, sans-serif;                
                 }
-                .container:not([enabled]){              
+                .container{              
                     margin:0;  
                     padding:0;               
                     position:fixed;              
@@ -28,12 +29,15 @@
                     width: 100%;                         
                 }               
                 .cabecalho{
+                    /*display: none !important;*/
                     background-color: lightseagreen;
                     color: white;                
                     height: 30%;  
                     margin:0;                   
-                    top:0 ;                                                     
-                }                
+                    top:0 ; 
+                                                                      
+                }   
+                        
                 .corpo{
                     margin: 0;
                     position:fixed;
@@ -41,79 +45,51 @@
                     height: 100%;
                     width: 100%;
                     padding:0;                   
-                }   
-                #card { 
-                    display:block;
-                    top:10%;
-                    left:35%;
-                    width: 300px;
-                    height: 220px;
-                   
-                    position:absolute;                            
-                    padding: 16px;                       
-                    border-radius: 5px;
-                    color:pink;
-                    background-color:palevioletred; 
-                    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);                
-                }                  
-                #card[hide]{
-                    display: none;
-                }              
-                paper-input{
-                    --paper-input-container-color:pink;
-                    --paper-input-container-focus-color: pink;
-                }                
-                paper-button.login{                 
-                    background-color: lightseagreen;
-                    font-weight: bold;
-                    color:white;
-                    margin-left: 15%;
-                    width: 70%;                     
-                }                 
-                paper-button.cadastro[raised]{                                     
-                    width:40%; 
-                    height: 15%;
-                    padding:1px; 
-                    top:10px; 
-                    margin-left: 30%;                      
-                    background-color: lightseagreen; 
-                    font-weight: bold;
-                    color:white;             
-                }
+                }                         
                 paper-tooltip{
                     --paper-tooltip-background:lightpink;
                     --paper-tooltip-text-color:crimson;
-                    width:100px;
-                }                
+                    width:5%;
+                }                 
+               @media screen and (min-device-width: 320px) and (max-device-width:568px) and (orientation:portrait) {
+                    .cabecalho {
+                        display: none !important;                        
+                    }                 
+                }
+                @media screen and (min-device-width: 320px) and (max-device-width:568px) and (orientation:landscape) {
+                    .cabecalho {
+                        display: none !important;                        
+                    }                 
+                }
+                @media screen and (min-device-width: 375px) and (max-device-width:667px) {
+                    .cabecalho {
+                        display: none !important;                        
+                    }                 
+                }
+                @media screen and (min-device-width: 414px) and (max-device-width:736px) {
+                    .cabecalho {
+                        display: none !important;                        
+                    }                 
+                }
+                @media screen and (min-device-width: 375px) and (max-device-width:812px) {
+                    .cabecalho {
+                        display: none !important;                        
+                    }                 
+                }
             </style> 
        </custom-style> 
                 <div class="container">
-                       <div class="cabecalho layout horizontal center">                                                                                                     
+                       <div class="cabecalho layout horizontal center hide" hide>                                                                                                     
                             <div main-title><h1 style="margin:10px;">Meu Sistema</h1></div>                            
                             <paper-button raised id="mostra"  on-click="mostraCard" style="background-color: palevioletred">Mostra Login</paper-button>
                             <div class="flex" style="text-align: right; margin:5px;">                                           
                                 <a href="">Ajuda </a>   
                                 <iron-icon id="help" icon="help-outline"></iron-icon>
-                                <paper-tooltip for="help" position="top">Tooltip text</paper-tooltip>   
+                                <paper-tooltip for="help" position="left">Tooltip text</paper-tooltip>   
                             </div>                                        
                         </div>
                         <div class="corpo">
-                          <puppie-login id="login"></puppie-login> 
-                         
-                         <!--   <div id="card">                                       
-                                <paper-input  label="Usuario"  value="{{user}}"> 
-                                    <iron-icon icon="social:person" slot="prefix"></iron-icon>                                    
-                                    <iron-icon id="usu" icon="info-outline" slot="suffix"></iron-icon>                                                                                                                            
-                                </paper-input> 
-                                <paper-tooltip for="usu" position="right">Insira o nome do usuario</paper-tooltip>    
-                                <paper-input always-float-label label="Senha" value="{{password}}">
-                                    <iron-icon icon="lock" slot="prefix"></iron-icon>  
-                                    <iron-icon id="senha" icon="help-outline" slot="suffix"></iron-icon>                       
-                                </paper-input>  
-                                <paper-tooltip for="senha" position="right">Insira a sua senha</paper-tooltip>
-                                <paper-button raised class="login" on-click="escondeCard">Login</paper-button> 
-                                <paper-button raised class="cadastro">Cadastrar</paper-button>
-                            </div> -->
+                          <puppie-login id="login"></puppie-login>                         
                         </div>
                             
                    </div>     
@@ -148,12 +124,8 @@
                     if(newValue!=oldValue){
                         console.log(newValue);
                 }           
-            }
-            
-           /* escondeCard(){                          
-                this.shadowRoot.querySelector('#card').setAttribute('hide',null);               
-            } */
-            mostraCard(){ 
+            }          
+            mostraCard(){ //GAMBIARRA! USAR EVENTOS E MÉTODOS!!
                 let teste= this.shadowRoot.querySelector('#login');
                 teste.shadowRoot.querySelector('#card').removeAttribute('hide');                            
             }              

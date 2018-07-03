@@ -5,6 +5,7 @@
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
 
 <dom-module id="puppie-registra">
     <template>
@@ -19,10 +20,9 @@
                     display:block;
                     top:10%;
                     left:25%;
-                    width: 550px;
-                    height: 325px;
-                    position:absolute;                                       
-                   /* border-radius: 5px;*/
+                    width: 45%;
+                    height:47%;
+                    position:absolute;                     
                     color:pink;
                     background-color:palevioletred; /* #fff;*/
                     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);                
@@ -111,7 +111,6 @@
                 this.shadowRoot.querySelector('#card').setAttribute('hide',null);                
                 var para = document.createElement('puppie-login');
                 this.shadowRoot.appendChild(para);
-
             }  
                        
         }             
