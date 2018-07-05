@@ -8,6 +8,8 @@
 <link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../bower_components/iron-media-query/iron-media-query.html">
+<link rel="import" href="../../bower_components/iron-resizable-behavior/iron-resizable-behavior.html">
 <link rel="import" href="puppie-login.html">
 <link rel="import" href="puppie-registra.html">
 
@@ -28,16 +30,19 @@
                     height: 100%;
                     width: 100%;                         
                 }               
-                .cabecalho{
-                    /*display: none !important;*/
+                .cabecalho{                    
                     background-color: lightseagreen;
                     color: white;                
                     height: 30%;  
                     margin:0;                   
-                    top:0 ; 
-                                                                      
-                }   
-                        
+                    top:0 ;                                                                       
+                } 
+                .cabecalho[mobile]{
+                    display: none !important; 
+                } 
+                puppie-login[hide]{
+                    display: none;
+                }                       
                 .corpo{
                     margin: 0;
                     position:fixed;
@@ -51,12 +56,12 @@
                     --paper-tooltip-text-color:crimson;
                     width:5%;
                 }                 
-               @media screen and (min-device-width: 320px) and (max-device-width:568px) and (orientation:portrait) {
+            /*  @media screen and (min-device-width: 320px) and (max-device-width:568px) and (orientation:portrait) {
                     .cabecalho {
                         display: none !important;                        
                     }                 
-                }
-                @media screen and (min-device-width: 320px) and (max-device-width:568px) and (orientation:landscape) {
+                }*/
+                 @media screen and (min-device-width: 320px) and (max-device-width:568px) and (orientation:landscape) {
                     .cabecalho {
                         display: none !important;                        
                     }                 
@@ -77,9 +82,10 @@
                     }                 
                 }
             </style> 
-       </custom-style> 
+       </custom-style>
+       <iron-media-query query="(min-device-width: 320px) and (max-device-width:568px)" query-matches="{{iphone}}"></iron-media-query> 
                 <div class="container">
-                       <div class="cabecalho layout horizontal center hide" hide>                                                                                                     
+                       <div class="cabecalho layout horizontal center hide" mobile$="{{iphone}}">                                                                                                     
                             <div main-title><h1 style="margin:10px;">Meu Sistema</h1></div>                            
                             <paper-button raised id="mostra"  on-click="mostraCard" style="background-color: palevioletred">Mostra Login</paper-button>
                             <div class="flex" style="text-align: right; margin:5px;">                                           
@@ -99,8 +105,29 @@
         
     </template>
     <script>
-        class PuppieEntrada extends Polymer.Element{
+        //class PuppieEntrada extends Polymer.Element{
+        class PuppieEntrada extends Polymer.mixinBehaviors([Polymer.IronResizableBehavior],Polymer.Element){
             static get is() {return 'puppie-entrada';}
+           
+            connectedCallback() {
+                super.connectedCallback();
+                this.addEventListener('iron-resize', this._resizeEvent);               
+            }
+
+            disconnectedCallback() {
+                super.disconnectedCallback();
+                this.removeEventListener('iron-resize', this._resizeEvent);
+            }
+
+            _resizeEvent(e) {                 
+                this._debouncer = Polymer.Debouncer.debounce(this._debouncer,
+                    Polymer.Async.timeOut.after(100),
+                    () => { console.log( 'oi') });
+                    //console.log( window.innerWidth +','+window.innerHeight)
+            }
+
+
+            
             static get properties() {
                 return {          
                     user:{
@@ -125,12 +152,15 @@
                         console.log(newValue);
                 }           
             }          
-            mostraCard(){ //GAMBIARRA! USAR EVENTOS E MÉTODOS!!
-                let teste= this.shadowRoot.querySelector('#login');
-                teste.shadowRoot.querySelector('#card').removeAttribute('hide');                            
-            }              
+            mostraCard(){                  
+                this.shadowRoot.querySelector("#login").mostraC();                                 
+            } 
+                       
         }     
         customElements.define(PuppieEntrada.is,PuppieEntrada);
+
+         
+     
 
     </script>    
 </dom-module>

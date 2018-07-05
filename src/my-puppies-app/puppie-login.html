@@ -3,84 +3,125 @@
 <link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../../bower_components/paper-tooltip/paper-tooltip.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="puppie-registra.html">
 
 <dom-module id="puppie-login">
     <template>
-        <style>
-            :host {
-                display: block;
-                font-family: Roboto, Noto, sans-serif;                
-            }
-            #card { 
-                display:block;
-                top:10%;
-                left:35%;
-                width: 300px;
-                height: 280px;
-              /*  width: 45%;
-                height: 45%;*/
-                position:absolute;               
-                color:pink;
-                background-color:palevioletred; /* #fff;*/
-                box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);                
-            } 
-            #card[hide]{
-                    display: none;
-            } 
-            #topo{                               
-                top:0;
-                background-color: lightseagreen;
-                margin:0;
-                height: 15%;
-                width:100%;
-                @apply --layout-center-justified; 
-                color:white;                  
-            }   
-            
-            paper-input{
-                    --paper-input-container-color:pink;
-                    --paper-input-container-focus-color: pink;
-                    --primary-text-color:pink;
-            }                
-            paper-button.login{                 
+        <custom-style> 
+            <style is="custom-style" include="iron-flex  iron-flex-alignment iron-flex-factors">
+                :host {
+                    display: block;
+                    font-family: Roboto, Noto, sans-serif;                
+                }
+                #card { 
+                    display:block;
+                    top:10%;
+                    left:35%;
+                    width: 300px;
+                    height: 280px;
+                /*  width: 45%;
+                    height: 45%;*/
+                    position:absolute;               
+                    color:pink;
+                    background-color:palevioletred; /* #fff;*/
+                    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);                
+                } 
+                #card[hide]{
+                        display: none;
+                } 
+                #topo{                               
+                    top:0;
                     background-color: lightseagreen;
-                    font-weight: bold;
-                    color:white;
-                    margin-left: 15%;
-                    width: 70%;                     
-            }                 
-            paper-button.cadastro[raised]{                                     
-                    width:40%; 
-                    height: 30%;                     
-                    top:10px;
-                    padding:1%;
-                    margin-left: 30%;                      
-                    background-color: lightseagreen; 
-                    font-weight: bold;
-                    color:white;             
-            }
-            paper-tooltip{
-                    --paper-tooltip-background:lightpink;
-                    --paper-tooltip-text-color:crimson;
-                    width:45%;
-            }
-          /*  @media handheld and (orientation:landscape){
+                    margin:0;
+                    height: 15%;
+                    width:100%;
+                    @apply --layout-center-justified; 
+                    color:white;                  
+                }   
+                
+                paper-input{
+                        --paper-input-container-color:pink;
+                        --paper-input-container-focus-color: pink;
+                        --primary-text-color:pink;
+                }                
+                paper-button.login{                 
+                        background-color: lightseagreen;
+                        font-weight: bold;
+                        color:white;
+                        margin-left: 15%;
+                        width: 70%;                     
+                }                 
+                paper-button.cadastro[raised]{                                     
+                        width:40%; 
+                        height: 30%;                     
+                        top:10px;
+                        padding:1%;
+                        margin-left: 30%;                      
+                        background-color: lightseagreen; 
+                        font-weight: bold;
+                        color:white;             
+                }
+                paper-tooltip{
+                        --paper-tooltip-background:lightpink;
+                        --paper-tooltip-text-color:crimson;
+                        width:45%;
+                }
+               @media screen and (min-device-width: 320px) and (max-device-width:568px) and (orientation:portrait) {
                     #card{
-                        width:100%;
-                        height: 100%;
-                        top:0;
-                        left:0;
+                            width: 100%;
+                            height:100%;
+                            top:0;
+                            left:0;                          
+                        }
+                    .gamb{                       
+                        height:15%;
                     }
-                    
-                }  */        
-        </style>
+                                  
+                    }
+                @media screen and (min-device-width: 320px) and (max-device-width:568px) and (orientation:landscape) {
+                    #card{
+                            width: 100%;
+                            height:100%;
+                            top:0;
+                            left:0;
+                    }                 
+                }
+                @media screen and (min-device-width: 375px) and (max-device-width:667px) {
+                    #card{
+                            width: 100%;
+                            height:100%;
+                            top:0;
+                            left:0;
+                    }                
+                }
+                @media screen and (min-device-width: 414px) and (max-device-width:736px) {
+                    #card{
+                            width: 100%;
+                            height:100%;
+                            top:0;
+                            left:0;
+                    }                 
+                }
+                @media screen and (min-device-width: 375px) and (max-device-width:812px) {
+                    #card{
+                            width: 100%;
+                            height:100%;
+                            top:0;
+                            left:0;
+                    }                 
+                }    
+            </style>
+        </custom-style>
         <div id="card">   
             <div id="topo">                                 
                
             </div> 
-            <div style="padding:16px">                                      
-                <paper-input always-float-label label="Usuario"  value="{{user}}"> <!--on-value-changed-->
+            <div class="gamb">                                 
+            </div>
+            <div class="conteudo" style="padding:16px">                                      
+                <paper-input always-float-label label="Usuario"  value="{{user}}"> 
                     <iron-icon icon="social:person" slot="prefix"></iron-icon>                                    
                     <iron-icon id="usu" icon="info-outline" slot="suffix"></iron-icon>                                                                                                                            
                 </paper-input> 
@@ -90,8 +131,9 @@
                     <iron-icon id="senha" icon="help-outline" slot="suffix"></iron-icon>                       
                 </paper-input>  
                 <paper-tooltip for="senha" position="right">Insira a sua senha</paper-tooltip>
-                <paper-button raised class="login" on-click="escondeCard">Login</paper-button> 
+                <paper-button  raised class="login" on-click="escondeCard">Login</paper-button> 
                 <paper-button raised class="cadastro" on-click="registra">Cadastrar</paper-button>
+               
             </div> 
         </div> 
     </template>
@@ -112,6 +154,7 @@
                     }         
                 };
              }
+             
       
             _showUser(newValue,oldValue){ 
                 if(newValue!=oldValue){
@@ -127,13 +170,27 @@
             escondeCard(){                          
                 this.shadowRoot.querySelector('#card').setAttribute('hide',null);               
             }
+            mostraC(){                          
+                this.shadowRoot.querySelector('#card').removeAttribute('hide');               
+            }
             registra(){
                 this.shadowRoot.querySelector('#card').setAttribute('hide',null);                
                 var para = document.createElement('puppie-registra');
                 this.shadowRoot.appendChild(para);
             }
+           
+
+
         }
         customElements.define(PuppieLogin.is,PuppieLogin);
+
+        
+
+       
+            
+        
+                 
+           
     </script>
 
 </dom-module>
