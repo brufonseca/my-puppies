@@ -16,12 +16,12 @@
                     font-family: Roboto, Noto, sans-serif;                
                 }                
                 #card { 
-                   /* @apply --layout-center-justified; */
+                    
                     display:block;
                     top:10%;
                     left:25%;
-                    width: 45%;
-                    height:47%;
+                    width: 400px;
+                    height:320px;
                     position:absolute;                     
                     color:pink;
                     background-color:palevioletred; /* #fff;*/
@@ -37,8 +37,10 @@
                     border-radius: 0;
                     height: 15%;
                     width:100%;
-                    @apply --layout-center; 
+                   
                     color:white;
+                    @apply --layout-horizontal; 
+                    @apply --layout-center;
                    
                 }  
                 paper-input{
@@ -64,7 +66,8 @@
        </custom-style> 
         <div id="card">
             <div id="topo"> 
-                <paper-icon-button icon="arrow-back" on-tap="volta"></paper-icon-button>                 
+                <paper-icon-button icon="arrow-back" on-tap="volta"></paper-icon-button>  
+                <div style="width:28%"></div>               
                 <div>Novo Usuário</div>                             
             </div>
             <div style="padding: 16px;">
@@ -87,12 +90,12 @@
                 </div>
                 <div>
                     <div style="display: inline-block; width:45%">
-                        <paper-input always-float-label label="Senha">
+                        <paper-input always-float-label type="password" label="Senha" value="{{senha1}}">
                             <iron-icon icon="lock" slot="prefix"></iron-icon>                                     
                         </paper-input>
                     </div>
                     <div style=" width:50%;float:right">
-                        <paper-input always-float-label label="Confirmar Senha">
+                        <paper-input always-float-label type="password" label="Confirmar Senha" value="{{senha2}}">
                             <iron-icon icon="lock" slot="prefix"></iron-icon>                                     
                         </paper-input>
                     </div>  
@@ -105,7 +108,34 @@
     </template>
     <script>
          class PuppieRegistra extends Polymer.Element{
-            static get is() {return 'puppie-registra';}   
+            static get is() {return 'puppie-registra';} 
+
+            static get properties(){
+                return{
+                    senha1:{
+                        type:String     
+                    },
+                    senha2:{
+                        type:String
+                    }
+                }                
+            }; 
+            static get observers() {
+                return [
+                'confereSenha(senha1,senha2)'
+                ]
+            }
+
+
+            
+
+
+            confereSenha(senha1,senha2){       
+                if (senha1==senha2){
+                console.log('senhas ok');          
+                }
+                else console.log('senhas não conferem!');
+            } 
 
             volta(){
                 this.shadowRoot.querySelector('#card').setAttribute('hide',null);                

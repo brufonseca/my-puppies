@@ -109,25 +109,6 @@
         class PuppieEntrada extends Polymer.mixinBehaviors([Polymer.IronResizableBehavior],Polymer.Element){
             static get is() {return 'puppie-entrada';}
            
-            connectedCallback() {
-                super.connectedCallback();
-                this.addEventListener('iron-resize', this._resizeEvent);               
-            }
-
-            disconnectedCallback() {
-                super.disconnectedCallback();
-                this.removeEventListener('iron-resize', this._resizeEvent);
-            }
-
-            _resizeEvent(e) {                 
-                this._debouncer = Polymer.Debouncer.debounce(this._debouncer,
-                    Polymer.Async.timeOut.after(100),
-                    () => { console.log( 'oi') });
-                    //console.log( window.innerWidth +','+window.innerHeight)
-            }
-
-
-            
             static get properties() {
                 return {          
                     user:{
@@ -155,6 +136,30 @@
             mostraCard(){                  
                 this.shadowRoot.querySelector("#login").mostraC();                                 
             } 
+           
+           
+           
+           
+            connectedCallback() {
+                super.connectedCallback();
+                this.addEventListener('iron-resize', this._resizeEvent);               
+            }
+
+            disconnectedCallback() {
+                super.disconnectedCallback();
+                this.removeEventListener('iron-resize', this._resizeEvent);
+            }
+
+            _resizeEvent(e) {                 
+                this._debouncer = Polymer.Debouncer.debounce(this._debouncer,
+                    Polymer.Async.timeOut.after(100),
+                    () => { console.log( window.innerWidth +','+window.innerHeight) });
+                   
+            }
+
+
+            
+           
                        
         }     
         customElements.define(PuppieEntrada.is,PuppieEntrada);
